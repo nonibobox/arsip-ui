@@ -1,0 +1,52 @@
+version: '3.5'
+
+services:
+  arsipui:
+    container_name: arsipui
+    volumes:
+      - .:/var/www/html/
+      - /var/www/html/vendor/
+      - ./php/laravel.ini:/usr/local/etc/php/conf.d/laravel.ini
+    build: .
+    working_dir: /var/www/html/
+    restart: always
+    networks:
+      - apigateway_api-network
+    depends_on:
+      - dbui
+  dbui:
+    container_name: dbui
+    image: mysql:8
+    ports:
+      - "33660:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: arsip_ui_db
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - apigateway_api-network
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql-files:/var/lib/mysql-files
+  webserverui:
+    image: nginx:alpine
+    container_name: webserverui
+    volumes:
+      - ./:/var/www/html/
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:8000"
+    networks:
+      - apigateway_api-network
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
+  
+#Docker Networks
+networks:
+  apigateway_api-network:
+    external: true
