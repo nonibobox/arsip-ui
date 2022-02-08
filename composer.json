@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -13,7 +16,11 @@
         "laravel/tinker": "^2.5"
     },
     "require-dev": {
+        "codeception/module-asserts": "^2.0",
         "codeception/module-laravel": "^2.2",
+        "codeception/module-phpbrowser": "^2.0",
+        "codeception/module-rest": "^2.0",
+        "codeception/module-webdriver": "^2.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.6",

@@ -29,7 +29,8 @@ class DashboardController extends Controller
             }
             //$models = ($response->successful()) ? $response->json()["data"] : [];
         } catch (\Exception $e) {
-            return ['message' => 'error ' . $e->getMessage(), 'status' => 500];
+            $models = ["2014"=>0,"2015"=>0,"2016"=>0,"2017"=>0,"2018"=>0,"2019"=>0,"2020"=>0,"2021"=>0,"2022"=>0];
+            return view('dashboard', compact('models', 'page_title', 'page_description'));
         }
 
         return view('dashboard', compact('models', 'page_title', 'page_description'));
