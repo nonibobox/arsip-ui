@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.5"
     },
     "require-dev": {
+        "codeception/module-laravel": "^2.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.6",
